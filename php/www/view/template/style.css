@@ -1,0 +1,18 @@
+.mdl-layout {
+  width: 100%;
+}
+
+.mdl-grid.center-items {
+  justify-content: center;
+  padding: 0.5%;
+	flex: none;
+}
+
+.mdl-mini-footer {
+  height: 1%;
+  flex: 0 0 auto;
+}
+
+.mdl-layout__content {
+  flex: 1 0 auto;
+}

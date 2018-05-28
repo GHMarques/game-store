@@ -1,0 +1,62 @@
+version: "3.1"
+
+services:
+    nginx:
+        build: ./nginx/
+        ports:
+            - 80:80
+        volumes:
+            - ./php/www:/var/www/html:ro
+        networks:
+            - server
+        depends_on:
+            - php
+
+    php:
+        build: ./php/
+        expose:
+            - 9000
+        volumes:
+            - ./php/www:/var/www/html
+        networks:
+            - database
+            - server
+        depends_on:
+            - postgres
+
+    postgres:
+        image: postgres
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          PGDATA: /database/postgres
+        ports:
+          - "5432:5432"
+        networks:
+          - database
+        restart: unless-stopped
+        volumes:
+           - ./database/postgres/backup:/backup
+
+    pgadmin:
+        links:
+          - postgres:postgres
+        image: fenglc/pgadmin4
+        environment:
+          DEFAULT_USER: root@root.com
+          DEFAULT_PASSWORD: root
+        volumes:
+           - ./database/pgadmin/pgsql:/pgsql
+           - ./database/pgadmin/data:/var/lib/pgadmin
+        ports:
+          - "5050:5050"
+        networks:
+          - database
+        restart: unless-stopped
+
+volumes:
+    database:
+
+networks:
+    database:
+    server:
