@@ -16,3 +16,17 @@
 .mdl-layout__content {
   flex: 1 0 auto;
 }
+
+.mdl-layout__drawer-button .material-icons {
+  padding-top: 25%;
+}
+
+.right-align {
+  text-align: right;
+  float: right;
+}
+
+.left-align {
+  text-align: left;
+  float: left;
+}

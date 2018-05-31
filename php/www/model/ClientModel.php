@@ -1,20 +1,22 @@
 <?php
   require_once '../config/ConnectionDB.php';
   class ClientModel {
-    private $name;
-    private $email;
-    private $password;
-    private $birth;
-    private $street;
-    private $number;
-    private $state;
-    private $complement;
-    private $countryId;
+    public $id;
+    public $name;
+    public $email;
+    public $password;
+    public $birth;
+    public $street;
+    public $number;
+    public $state;
+    public $complement;
+    public $countryId;
     /**
      * Constructor
      */
-    function __construct() {}
-    function __construct1($name, $email, $password, $birth, $street, $number, $state, $complement, $countryId) {
+    function __construct($name = null, $email = null, $password = null, $birth = null, $street = null, $number = null, $state = null, $complement = null, $countryId = null, $id = null) {
+      if($id)
+        $this->id = $id;
       $this->name = $name;
       $this->email = $email;
       $this->password = $password;
@@ -33,6 +35,18 @@
         name, email, password, birth, street, \"number\", state, complement, country_id)
         VALUES ('" . $this->name . "', '" . $this->email . "', '" . $this->password . "', '" . $this->birth . "', '" . $this->street . "', '" . $this->number . "', '" . $this->state . "', '" . $this->complement . "', " . $this->countryId . ");";
       $result = pg_query(connectionDB::getDBConnection(), $sql);
+    }
+    /**
+     * Return client by id
+     */
+    public function getById($id){
+      $result = pg_query(connectionDB::getDBConnection(), 
+        "SELECT * FROM client WHERE id=" . $id);
+      if (!$result) {
+          echo "An error occurred.\n";
+          exit;
+      }
+      return pg_fetch_row($result);
     }
     /**
      * Return all clients with country name
@@ -58,6 +72,29 @@
           exit;
       }
       return pg_fetch_all($result);
+    }
+    /**
+     * Update the client
+     */
+    public function update(){
+      $sql = "UPDATE client 
+        SET name = '" . $this->name . "', email = '" . $this->email . "', password = '" . $this->password . "', birth = '" . $this->birth . "', street = '" . $this->street . "', \"number\" = '" . $this->number . "', state = '" . $this->state . "', complement = '" . $this->complement . "', country_id = '" . $this->countryId. "' 
+        WHERE id =".$this->id;
+      $result = pg_query(connectionDB::getDBConnection(), $sql);
+      if(!$result){
+        echo pg_last_error(connectionDB::getDBConnection());
+      } 
+    }
+
+    /**
+     * Delete the client
+     */
+    public function delete($id){
+      $sql = "DELETE FROM client WHERE id =".$id;
+      $result = pg_query(connectionDB::getDBConnection(), $sql);
+      if(!$result){
+        echo pg_last_error(connectionDB::getDBConnection());
+      }
     }
   }
 ?>

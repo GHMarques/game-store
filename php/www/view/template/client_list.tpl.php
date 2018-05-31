@@ -1,10 +1,13 @@
-<?php include('../view/template/header.tpl.php'); ?>
+<?php 
+  include('../view/template/header.tpl.php');
+  require_once '../config/Constant.php'; 
+?>
 <div class="mdl-layout__drawer">
-  <span class="mdl-layout-title">Menu</span>
+  <span class="mdl-layout-title"><?=constant::getString('Menu')?></span>
   <nav class="mdl-navigation">
-    <a class="mdl-navigation__link" href="/view/client_edit.php">Create</a>
-    <a class="mdl-navigation__link" href="">Update</a>
-    <a class="mdl-navigation__link" href="">Delete</a>
+    <a class="mdl-navigation__link" href="/view/client_edit.php"><?=constant::getString('Create')?></a>
+    <a class="mdl-navigation__link" href=""><?=constant::getString('Update')?></a>
+    <a class="mdl-navigation__link" href=""><?=constant::getString('Delete')?></a>
   </nav>
 </div>
 <main class="mdl-layout__content">
@@ -13,20 +16,20 @@
       <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
           <tr>
-            <th class="mdl-data-table__cell--non-numeric">Name</th>
-            <th class="mdl-data-table__cell--non-numeric">Email</th>
-            <th class="mdl-data-table__cell--non-numeric">Password</th>
-            <th class="mdl-data-table__cell--non-numeric">Birth</th>
-            <th class="mdl-data-table__cell--non-numeric">Street</th>
-            <th class="mdl-data-table__cell--non-numeric">Number</th>
-            <th class="mdl-data-table__cell--non-numeric">State</th>
-            <th class="mdl-data-table__cell--non-numeric">Complement</th>
-            <th class="mdl-data-table__cell--non-numeric">Country</th>
-            <th class="mdl-data-table__cell--non-numeric">Options</th>
+            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('Name')?></th>
+            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('Email')?></th>
+            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('Password')?></th>
+            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('Birth')?></th>
+            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('Street')?></th>
+            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('Number')?></th>
+            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('State')?></th>
+            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('Complement')?></th>
+            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('Country')?></th>
+            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('Options')?></th>
           </tr>
         </thead>
         <tbody>
-          <?php foreach($this->clientArray as $client) { ?>
+          <?php  if($this->clientArray) foreach($this->clientArray as $client) { ?>
             <tr>
               <td class="mdl-data-table__cell--non-numeric"><?=$client[client_name]?></td>
               <td class="mdl-data-table__cell--non-numeric"><?=$client[email]?></td>
@@ -38,10 +41,10 @@
               <td class="mdl-data-table__cell--non-numeric"><?=$client[complement]?></td>
               <td class="mdl-data-table__cell--non-numeric"><?=$client[country_name]?></td>
               <td class="mdl-data-table__cell--non-numeric">
-                <a href="client_edit.php?function=edit&id=<?=$client[id]?>">
+                <a href="client_edit.php?id=<?=$client[id]?>">
                   <i class="material-icons">mode_edit</i>
                 </a>
-                <a href="client_edit.php?function=delete&id=<?=$client[id]?>">
+                <a href="../../controller/clientController.php?id=<?=$client[id]?>">
                   <i class="material-icons">delete</i>
                 </a>
               </td>
