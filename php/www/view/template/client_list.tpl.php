@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../view/template/style.css">
 <?php 
   include('../view/template/header.tpl.php');
   require_once '../config/Constant.php'; 
@@ -6,8 +7,6 @@
   <span class="mdl-layout-title"><?=constant::getString('Menu')?></span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="/view/client_edit.php"><?=constant::getString('Create')?></a>
-    <a class="mdl-navigation__link" href=""><?=constant::getString('Update')?></a>
-    <a class="mdl-navigation__link" href=""><?=constant::getString('Delete')?></a>
   </nav>
 </div>
 <main class="mdl-layout__content">

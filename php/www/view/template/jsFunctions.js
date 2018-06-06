@@ -15,6 +15,31 @@ window.onload = function showModal(){
   
 }
 
+function validateBuy(form){
+  var blnReturn = true;
+  if(form.price.value.length === 0){
+    document.getElementById("div-price").classList.add("is-invalid");
+    form.price.setAttribute("required", '');
+    blnReturn = false;
+  } else {
+    value = parseFloat(form.price.value);
+    if(isNaN(value)){
+      document.getElementById("div-price").classList.add("is-invalid");
+      form.price.setAttribute("required", '');
+      blnReturn = false;
+    } else {
+      form.price.value = value;
+    }
+  }
+
+  if(form.buyDate.value.length === 0){
+    document.getElementById("div-buyDate").classList.add("is-invalid");
+    form.buyDate.setAttribute("required", '');
+    blnReturn = false;
+  }
+  return blnReturn;
+}
+
 function validate(form){
   var blnReturn = true;
   if(form.name.value.length === 0){
@@ -42,6 +67,12 @@ function validate(form){
   } else if(form.confirmPassword.value !== form.password.value){
     document.getElementById("div-confirm-password").classList.add("is-invalid");
     form.confirmPassword.setAttribute("required", '');
+    blnReturn = false;
+  }
+
+  if(form.birth.value.length === 0){
+    document.getElementById("div-birth").classList.add("is-invalid");
+    form.birth.setAttribute("required", '');
     blnReturn = false;
   }
 

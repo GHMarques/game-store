@@ -9,8 +9,6 @@
   <span class="mdl-layout-title"><?=constant::getString('Menu')?></span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="/view/client_list.php"><?=constant::getString('Search')?></a>
-    <a class="mdl-navigation__link" href=""><?=constant::getString('Update')?></a>
-    <a class="mdl-navigation__link" href=""><?=constant::getString('Delete')?></a>
   </nav>
 </div>
 <main class="mdl-layout__content">

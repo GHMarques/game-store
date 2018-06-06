@@ -53,7 +53,7 @@
      */
     public function getAll(){
       $result = pg_query(connectionDB::getDBConnection(), 
-        "SELECT * FROM client ");
+        "SELECT * FROM client ORDER BY id ASC");
       if (!$result) {
           echo "An error occurred.\n";
           exit;
@@ -66,7 +66,7 @@
     public function getAllWithCountryName(){
       $result = pg_query(connectionDB::getDBConnection(), 
         "SELECT client.id, client.name as client_name, country.name as country_name, client.email, client.password, client.birth, client.street, client.\"number\", client.state, client.complement
-        FROM client INNER JOIN country ON country.id=client.country_id");
+        FROM client INNER JOIN country ON country.id=client.country_id ORDER BY client.id ASC");
       if (!$result) {
           echo "An error occurred.\n";
           exit;

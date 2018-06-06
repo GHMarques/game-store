@@ -36,7 +36,17 @@
       'Are you sure you want to delete this client?' => 'Deseja deletar esse cliente?',
       'Agree' => 'Confirmar',
       'Disagree' => 'Cancelar',
-      'Delete' => 'Deletar'
+      'Delete' => 'Deletar',
+      'Store' => 'Loja',
+      'Edit buy' => 'Editar compra',
+      'Create buy' => 'Cadastrar compra',
+      'Client' => 'Cliente',
+      'Game' => 'Jogo',
+      'Buy date' => 'Data da compra',
+      'Price' => 'Preço',
+      'Payment type' => 'Tipo de pagamento',
+      'Must be a number!' => 'Deve ser um número!',
+      'Main statistics' => 'Principais estatísticas'
     );
     /**
      * Return a translate string

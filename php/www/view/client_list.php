@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="../view/template/style.css">
 <?php
   require_once '../model/CountryModel.php';
   require_once '../model/ClientModel.php';
@@ -9,5 +8,4 @@
   $client = new ClientModel();
   $template->clientArray = $client->getAllWithCountryName();
   $template->render('/client_list.tpl.php');
-
 ?>

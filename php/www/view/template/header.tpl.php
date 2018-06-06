@@ -20,8 +20,8 @@
           <!-- Navigation. We hide it in small screens. -->
           <nav class="mdl-navigation mdl-layout--large-screen-only">
             <a class="mdl-navigation__link" href="/view/client_list.php"><?=constant::getString('Clients')?></a>
-            <a class="mdl-navigation__link" href=""><?=constant::getString('Games')?></a>
-            <a class="mdl-navigation__link" href=""><?=constant::getString('Statistics')?></a>
+            <a class="mdl-navigation__link" href="/view/store_list.php"><?=constant::getString('Store')?></a>
+            <a class="mdl-navigation__link" href="/view/statistics_list.php"><?=constant::getString('Statistics')?></a>
           </nav>
         </div>
       </header>
