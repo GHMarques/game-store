@@ -73,6 +73,17 @@
       }
       return pg_fetch_all($result);
     }
+
+    public function getAllWithCountryNameMysql(){
+      $result = mysqli_query(connectionDB::getDBConnectionMysql(), 
+        "SELECT client.id, client.name as client_name, country.name as country_name, client.email, client.password, client.birth, client.street, client.\"number\", client.state, client.complement
+        FROM client INNER JOIN country ON country.id=client.country_id ORDER BY client.id ASC");
+      if (!$result) {
+          echo "An error occurred.\n";
+          exit;
+      }
+      return mysqli_fetch_array($result, MYSQLI_ASSOC);
+    }
     /**
      * Update the client
      */

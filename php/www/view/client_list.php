@@ -1,7 +1,7 @@
 <?php
   require_once '../model/CountryModel.php';
   require_once '../model/ClientModel.php';
-  include_once('../config/template.php');
+  include_once('../config/Template.php');
   $template = new Template();
   $country = new CountryModel();
   $template->countryArray = $country->getAll();
