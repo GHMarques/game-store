@@ -1,7 +1,7 @@
 <?php
   require_once '../model/ClientGameModel.php';
   require_once '../model/ClientModel.php';
-  include_once('../config/template.php');
+  include_once('../config/Template.php');
   $template = new Template();
   $clientGame = new ClientGameModel();
 

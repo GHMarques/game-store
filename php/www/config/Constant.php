@@ -46,7 +46,10 @@
       'Price' => 'Preço',
       'Payment type' => 'Tipo de pagamento',
       'Must be a number!' => 'Deve ser um número!',
-      'Main statistics' => 'Principais estatísticas'
+      'Main statistics' => 'Principais estatísticas',
+      'Are you sure you want to delete this buy?' => 'Tem certeza que deseja deletar essa compra?',
+      'Are you sure you want to delete this client?' => 'Tem certeza que deseja deletar esse cliente?',
+      'Best selling game' => 'Jogo mais vendido'
     );
     /**
      * Return a translate string

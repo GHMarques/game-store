@@ -26,16 +26,16 @@
         <tbody>
           <?php  if($this->clientGameArray) foreach($this->clientGameArray as $clientGame) { ?>
             <tr>
-              <td class="mdl-data-table__cell--non-numeric"><?=$clientGame[client_name]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?=$clientGame[game_name]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?=$clientGame[date]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?='R$ ' . $clientGame[total_price]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?=($clientGame[payment_type]) ? 'Cartão de crédito' : 'Boleto' ?></td>
+              <td class="mdl-data-table__cell--non-numeric"><?=$clientGame['client_name']?></td>
+              <td class="mdl-data-table__cell--non-numeric"><?=$clientGame['game_name']?></td>
+              <td class="mdl-data-table__cell--non-numeric"><?=$clientGame['date']?></td>
+              <td class="mdl-data-table__cell--non-numeric"><?='R$ ' . $clientGame['total_price']?></td>
+              <td class="mdl-data-table__cell--non-numeric"><?=($clientGame['payment_type']) ? 'Cartão de crédito' : 'Boleto' ?></td>
               <td class="mdl-data-table__cell--non-numeric">
-                <a href="store_edit.php?id=<?=$clientGame[id]?>">
+                <a href="store_edit.php?id=<?=$clientGame['id']?>">
                   <i class="material-icons">mode_edit</i>
                 </a>
-                <a href="../../controller/clientGameController.php?id=<?=$clientGame[id]?>">
+                <a href="../../controller/clientGameController.php?id=<?=$clientGame['id']?>">
                   <i class="material-icons">delete</i>
                 </a>
               </td>

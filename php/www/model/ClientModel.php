@@ -31,81 +31,132 @@
      * Insert a new client
      */
     public function insert(){
-      $sql = "INSERT INTO public.client(
-        name, email, password, birth, street, \"number\", state, complement, country_id)
-        VALUES ('" . $this->name . "', '" . $this->email . "', '" . $this->password . "', '" . $this->birth . "', '" . $this->street . "', '" . $this->number . "', '" . $this->state . "', '" . $this->complement . "', " . $this->countryId . ");";
-      $result = pg_query(connectionDB::getDBConnection(), $sql);
+      if(connectionDB::getDbType() == 0){
+        $sql = "INSERT INTO public.client(
+          name, email, password, birth, street, \"number\", state, complement, country_id)
+          VALUES ('" . $this->name . "', '" . $this->email . "', '" . $this->password . "', '" . $this->birth . "', '" . $this->street . "', '" . $this->number . "', '" . $this->state . "', '" . $this->complement . "', " . $this->countryId . ");";
+        $result = pg_query(connectionDB::getDBConnection(), $sql);
+      } else {
+        $sql = "INSERT INTO client(
+          name, email, password, birth, street, number, state, complement, country_id)
+          VALUES ('" . $this->name . "', '" . $this->email . "', '" . $this->password . "', '" . $this->birth . "', '" . $this->street . "', '" . $this->number . "', '" . $this->state . "', '" . $this->complement . "', " . $this->countryId . ");";
+        $result = mysqli_query(connectionDB::getDBConnection(), $sql);
+      }
+      
     }
     /**
      * Return client by id
      */
     public function getById($id){
-      $result = pg_query(connectionDB::getDBConnection(), 
-        "SELECT * FROM client WHERE id=" . $id);
-      if (!$result) {
-          echo "An error occurred.\n";
-          exit;
+      if(connectionDB::getDbType() == 0){
+        $result = pg_query(connectionDB::getDBConnection(), 
+          "SELECT * FROM client WHERE id=" . $id);
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return pg_fetch_row($result);
+      } else {
+        $result = mysqli_query(connectionDB::getDBConnection(), 
+          "SELECT * FROM client WHERE id=" . $id);
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return mysqli_fetch_row($result);
       }
-      return pg_fetch_row($result);
+      
     }
     /**
      * Return all clients with country name
      */
     public function getAll(){
-      $result = pg_query(connectionDB::getDBConnection(), 
-        "SELECT * FROM client ORDER BY id ASC");
-      if (!$result) {
-          echo "An error occurred.\n";
-          exit;
+      if(connectionDB::getDbType() == 0){
+        $result = pg_query(connectionDB::getDBConnection(), 
+          "SELECT * FROM client ORDER BY id ASC");
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return pg_fetch_all($result);
+      } else {
+        $result = mysqli_query(connectionDB::getDBConnection(), 
+          "SELECT * FROM client ORDER BY id ASC");
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
       }
-      return pg_fetch_all($result);
+      
     }
     /**
      * Return all clients with country name
      */
     public function getAllWithCountryName(){
-      $result = pg_query(connectionDB::getDBConnection(), 
-        "SELECT client.id, client.name as client_name, country.name as country_name, client.email, client.password, client.birth, client.street, client.\"number\", client.state, client.complement
-        FROM client INNER JOIN country ON country.id=client.country_id ORDER BY client.id ASC");
-      if (!$result) {
-          echo "An error occurred.\n";
-          exit;
+      if(connectionDB::getDbType() == 0){
+        $result = pg_query(connectionDB::getDBConnection(), 
+          "SELECT client.id, client.name as client_name, country.name as country_name, client.email, client.password, client.birth, client.street, client.\"number\", client.state, client.complement
+          FROM client INNER JOIN country ON country.id=client.country_id ORDER BY client.id ASC");
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return pg_fetch_all($result);
+      } else {
+        $result = mysqli_query(connectionDB::getDBConnection(), 
+          "SELECT client.id, client.name as client_name, country.name as country_name, client.email, client.password, client.birth, client.street, client.number, client.state, client.complement
+          FROM client INNER JOIN country ON country.id=client.country_id ORDER BY client.id ASC");
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
       }
-      return pg_fetch_all($result);
-    }
-
-    public function getAllWithCountryNameMysql(){
-      $result = mysqli_query(connectionDB::getDBConnectionMysql(), 
-        "SELECT client.id, client.name as client_name, country.name as country_name, client.email, client.password, client.birth, client.street, client.\"number\", client.state, client.complement
-        FROM client INNER JOIN country ON country.id=client.country_id ORDER BY client.id ASC");
-      if (!$result) {
-          echo "An error occurred.\n";
-          exit;
-      }
-      return mysqli_fetch_array($result, MYSQLI_ASSOC);
+      
     }
     /**
      * Update the client
      */
     public function update(){
-      $sql = "UPDATE client 
-        SET name = '" . $this->name . "', email = '" . $this->email . "', password = '" . $this->password . "', birth = '" . $this->birth . "', street = '" . $this->street . "', \"number\" = '" . $this->number . "', state = '" . $this->state . "', complement = '" . $this->complement . "', country_id = '" . $this->countryId. "' 
-        WHERE id =".$this->id;
-      $result = pg_query(connectionDB::getDBConnection(), $sql);
-      if(!$result){
-        echo pg_last_error(connectionDB::getDBConnection());
-      } 
+      if(connectionDB::getDbType() == 0){
+        $sql = "UPDATE client 
+          SET name = '" . $this->name . "', email = '" . $this->email . "', password = '" . $this->password . "', birth = '" . $this->birth . "', street = '" . $this->street . "', \"number\" = '" . $this->number . "', state = '" . $this->state . "', complement = '" . $this->complement . "', country_id = '" . $this->countryId. "' 
+          WHERE id =".$this->id;
+        $result = pg_query(connectionDB::getDBConnection(), $sql);
+        if(!$result){
+          echo pg_last_error(connectionDB::getDBConnection());
+        } 
+      } else {
+        $sql = "UPDATE client 
+          SET name = '" . $this->name . "', email = '" . $this->email . "', password = '" . $this->password . "', birth = '" . $this->birth . "', street = '" . $this->street . "', number = '" . $this->number . "', state = '" . $this->state . "', complement = '" . $this->complement . "', country_id = '" . $this->countryId. "' 
+          WHERE id =".$this->id;
+        $result = mysqli_query(connectionDB::getDBConnection(), $sql);
+        if(!$result){
+          echo "An error occurred.\n";
+        } 
+      }
+      
     }
 
     /**
      * Delete the client
      */
     public function delete($id){
-      $sql = "DELETE FROM client WHERE id =".$id;
-      $result = pg_query(connectionDB::getDBConnection(), $sql);
-      if(!$result){
-        echo pg_last_error(connectionDB::getDBConnection());
+      if(connectionDB::getDbType() == 0){
+        $sql = "DELETE FROM client WHERE id =".$id;
+        $result = pg_query(connectionDB::getDBConnection(), $sql);
+        if(!$result){
+          echo pg_last_error(connectionDB::getDBConnection());
+        }
+      } else {
+        $sql = "DELETE FROM client WHERE id =".$id;
+        $result = mysqli_query(connectionDB::getDBConnection(), $sql);
+        if(!$result){
+          echo "An error occurred.\n";
+        }
       }
+      
     }
   }
 ?>

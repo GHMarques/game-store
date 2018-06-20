@@ -69,7 +69,7 @@
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <select class="mdl-textfield__input" id="country" name="country">
                 <?php foreach($this->countryArray as $country) { ?>
-                  <option value="<?=$country[id]?>" <?= ($this->client[9] ===$country[id] ) ? 'selected' : '' ?>><?=$country[name]?></option>
+                  <option value="<?=$country['id']?>" <?= ($this->client[9] ===$country['id'] ) ? 'selected' : '' ?>><?=$country['name']?></option>
                 <?php } ?>
               </select>
               <label class="mdl-textfield__label" for="country"><?=constant::getString('Country')?>*</label>

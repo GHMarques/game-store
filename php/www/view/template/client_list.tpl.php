@@ -30,20 +30,20 @@
         <tbody>
           <?php  if($this->clientArray) foreach($this->clientArray as $client) { ?>
             <tr>
-              <td class="mdl-data-table__cell--non-numeric"><?=$client[client_name]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?=$client[email]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?=$client[password]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?=$client[birth]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?=$client[street]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?=$client[number]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?=$client[state]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?=$client[complement]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?=$client[country_name]?></td>
+              <td class="mdl-data-table__cell--non-numeric"><?=$client['client_name']?></td>
+              <td class="mdl-data-table__cell--non-numeric"><?=$client['email']?></td>
+              <td class="mdl-data-table__cell--non-numeric"><?=$client['password']?></td>
+              <td class="mdl-data-table__cell--non-numeric"><?=$client['birth']?></td>
+              <td class="mdl-data-table__cell--non-numeric"><?=$client['street']?></td>
+              <td class="mdl-data-table__cell--non-numeric"><?=$client['number']?></td>
+              <td class="mdl-data-table__cell--non-numeric"><?=$client['state']?></td>
+              <td class="mdl-data-table__cell--non-numeric"><?=$client['complement']?></td>
+              <td class="mdl-data-table__cell--non-numeric"><?=$client['country_name']?></td>
               <td class="mdl-data-table__cell--non-numeric">
-                <a href="client_edit.php?id=<?=$client[id]?>">
+                <a href="client_edit.php?id=<?=$client['id']?>">
                   <i class="material-icons">mode_edit</i>
                 </a>
-                <a href="../../controller/clientController.php?id=<?=$client[id]?>">
+                <a href="../../controller/clientController.php?id=<?=$client['id']?>">
                   <i class="material-icons">delete</i>
                 </a>
               </td>

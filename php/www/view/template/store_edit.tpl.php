@@ -16,7 +16,7 @@
     <div class="mdl-grid center-items">
       <div class="mdl-card mdl-shadow--6dp">
         <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
-          <h2 class="mdl-card__title-text"><?=($this->client) ? constant::getString('Edit buy') : constant::getString('Create buy')?></h2>
+          <h2 class="mdl-card__title-text"><?=($this->clientGame) ? constant::getString('Edit buy') : constant::getString('Create buy')?></h2>
         </div>
         <div class="mdl-card__supporting-text">
           <form method="POST" onsubmit="return validateBuy(this);" action="../../controller/clientGameController.php" name="creatForm" enotype="multipart/form-data">
@@ -24,7 +24,7 @@
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <select class="mdl-textfield__input" id="client" name="client">
                 <?php foreach($this->clientArray as $client) { ?>
-                  <option value="<?=$client[id]?>" <?= ($this->clientGame[1] === $client[id] ) ? 'selected' : '' ?>><?=$client[name] . ' - ' . $client[email]?></option>
+                  <option value="<?=$client['id']?>" <?= ($this->clientGame[1] === $client['id'] ) ? 'selected' : '' ?>><?=$client['name'] . ' - ' . $client['email']?></option>
                 <?php } ?>
               </select>
               <label class="mdl-textfield__label" for="client"><?=constant::getString('Client')?>*</label>
@@ -32,7 +32,7 @@
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <select class="mdl-textfield__input" id="game" name="game">
                 <?php foreach($this->gameArray as $game) { ?>
-                  <option value="<?=$game[id]?>" <?= ($this->clientGame[2] === $game[id] ) ? 'selected' : '' ?>><?=$game[name] . ' - R$ ' . $game[price]?></option>
+                  <option value="<?=$game['id']?>" <?= ($this->clientGame[2] === $game['id'] ) ? 'selected' : '' ?>><?=$game['name'] . ' - R$ ' . $game['price']?></option>
                 <?php } ?>
               </select>
               <label class="mdl-textfield__label" for="game"><?=constant::getString('Game')?>*</label>
