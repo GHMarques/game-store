@@ -114,3 +114,4 @@ ALTER TABLE `client_game` ADD CONSTRAINT `client_game` FOREIGN KEY (`client_id`)
 ;
 
 
+ALTER TABLE `company` ADD `money` DOUBLE NULL DEFAULT '0' AFTER `country_id`;

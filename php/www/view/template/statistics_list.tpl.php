@@ -14,35 +14,45 @@
   <div class="page-content">
     <div class="mdl-grid center-items">
       <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-        <caption><?=constant::getString('Main statistics')?></caption>
+        <caption><h5><?=constant::getString('Main statistics')?></h5></caption>
         <thead>
           <tr>
-            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('Best selling game')?></th>
-            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('Game')?></th>
-            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('Buy date')?></th>
-            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('Price')?></th>
-            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('Payment type')?></th>
-            <th class="mdl-data-table__cell--non-numeric"><?=constant::getString('Options')?></th>
+            <th class="mdl-data-table__cell--non-numeric right-border" colspan="2" style="text-align:center;"><?=constant::getString('Most popular game')?></th>
+            <th class="mdl-data-table__cell--non-numeric right-border" colspan="3" style="text-align:center"><?=constant::getString('Most popular client')?></th>
+            <th class="mdl-data-table__cell--non-numeric right-border" colspan="2" style="text-align:center"><?=constant::getString('Best day')?></th>
+            <th class="mdl-data-table__cell--non-numeric right-border" colspan="2" style="text-align:center"><?=constant::getString('General')?></th>
+            <th class="mdl-data-table__cell--non-numeric" colspan="3" style="text-align:center"><?=constant::getString('Best Company')?></th>
           </tr>
         </thead>
         <tbody>
-          <?php  if($this->clientGameArra) foreach($this->clientGameArray as $clientGame) { ?>
-            <tr>
-              <td class="mdl-data-table__cell--non-numeric"><?=$clientGame[client_name]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?=$clientGame[game_name]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?=$clientGame[date]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?='R$ ' . $clientGame[total_price]?></td>
-              <td class="mdl-data-table__cell--non-numeric"><?=($clientGame[payment_type]) ? 'Cartão de crédito' : 'Boleto' ?></td>
-              <td class="mdl-data-table__cell--non-numeric">
-                <a href="store_edit.php?id=<?=$clientGame[id]?>">
-                  <i class="material-icons">mode_edit</i>
-                </a>
-                <a href="../../controller/clientGameController.php?id=<?=$clientGame[id]?>">
-                  <i class="material-icons">delete</i>
-                </a>
-              </td>
-            </tr>
-          <?php } ?>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric sub-title"><?=constant::getString('Name')?></td>
+            <td class="mdl-data-table__cell--non-numeric sub-title right-border"><?=constant::getString('Quantity')?></td>
+            <td class="mdl-data-table__cell--non-numeric sub-title"><?=constant::getString('Name')?></td>
+            <td class="mdl-data-table__cell--non-numeric sub-title"><?=constant::getString('Quantity')?></td>
+            <td class="mdl-data-table__cell--non-numeric sub-title right-border"><?=constant::getString('Money spent')?></td>
+            <td class="mdl-data-table__cell--non-numeric sub-title"><?=constant::getString('Date')?></td>
+            <td class="mdl-data-table__cell--non-numeric sub-title right-border"><?=constant::getString('Games sold')?></td>
+            <td class="mdl-data-table__cell--non-numeric sub-title"><?=constant::getString('Most popular payment type')?></td>
+            <td class="mdl-data-table__cell--non-numeric sub-title right-border"><?=constant::getString('Total amount')?></td>
+            <td class="mdl-data-table__cell--non-numeric sub-title"><?=constant::getString('Name')?></td>
+            <td class="mdl-data-table__cell--non-numeric sub-title"><?=constant::getString('Games sold')?></td>
+            <td class="mdl-data-table__cell--non-numeric sub-title"><?=constant::getString('Total amount')?></td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric"><?=$this->popularGame->name?></td>
+            <td class="mdl-data-table__cell right-border"><?=$this->popularGame->quantidade?></td>
+            <td class="mdl-data-table__cell--non-numeric"><?=$this->popularClient->name?></td>
+            <td class="mdl-data-table__cell"><?=$this->popularClient->quantidade?></td>
+            <td class="mdl-data-table__cell right-border"><?='R$ ' . $this->popularClient->valor?></td>
+            <td class="mdl-data-table__cell--non-numeric"><?=$this->popularDate->date?></td>
+            <td class="mdl-data-table__cell right-border"><?=$this->popularDate->quantidade?></td>
+            <td class="mdl-data-table__cell--non-numeric"><?=($this->popularPaymentType->payment_type == 0) ? constant::getString('Boleto') : constant::getString('Credit card')?></td>
+            <td class="mdl-data-table__cell right-border"><?='R$ ' . $this->totalAmount->total?></td>
+            <td class="mdl-data-table__cell--non-numeric"><?=$this->popularCompany->name?></td>
+            <td class="mdl-data-table__cell"><?=$this->popularCompany->quantidade?></td>
+            <td class="mdl-data-table__cell"><?='R$ ' . $this->popularCompany->valor?></td>
+          </tr>
         </tbody>
       </table>
     </div>

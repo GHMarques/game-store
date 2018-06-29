@@ -49,7 +49,20 @@
       'Main statistics' => 'Principais estatísticas',
       'Are you sure you want to delete this buy?' => 'Tem certeza que deseja deletar essa compra?',
       'Are you sure you want to delete this client?' => 'Tem certeza que deseja deletar esse cliente?',
-      'Best selling game' => 'Jogo mais vendido'
+      'Best selling game' => 'Jogo mais vendido',
+      'Most popular game' => 'Jogo mais popular',
+      'Quantity' => 'Quantidade',
+      'Most popular client' => 'Cliente com mais jogos',
+      'Money spent' => 'Dinheiro gasto',
+      'Best day' => 'Melhor dia',
+      'Games sold' => 'Jogos vendidos',
+      'Boleto' => 'Boleto',
+      'Credit card' => 'Cartão de crédito',
+      'Date' => 'Data',
+      'Total amount' => 'Total arrecadado',
+      'General' => 'Geral',
+      'Most popular payment type' => 'Tipo de pagamento mais popular',
+      'Best Company' => 'Melhor desenvolvedora'
     );
     /**
      * Return a translate string

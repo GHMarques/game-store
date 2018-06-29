@@ -154,7 +154,99 @@
           echo "An error occurred.\n";
         }
       }
-      
+    }
+
+    public function getPopularDate(){
+      $sql = "SELECT date, COUNT(date) as quantidade
+        FROM client_game
+        GROUP BY date
+        ORDER BY quantidade DESC
+        LIMIT 1";
+      if(connectionDB::getDbType() == 0){
+        $result = pg_query(connectionDB::getDBConnection(), $sql);
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return pg_fetch_object($result);
+      } else {
+        $result = mysqli_query(connectionDB::getDBConnection(), $sql);
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return mysqli_fetch_object($result);
+      }
+    }
+
+    public function getPopularPaymentType(){
+      $sql = "SELECT payment_type, COUNT(date) as quantidade
+        FROM client_game
+        GROUP BY payment_type
+        ORDER BY quantidade DESC
+        LIMIT 1";
+      if(connectionDB::getDbType() == 0){
+        $result = pg_query(connectionDB::getDBConnection(), $sql);
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return pg_fetch_object($result);
+      } else {
+        $result = mysqli_query(connectionDB::getDBConnection(), $sql);
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return mysqli_fetch_object($result);
+      }
+    }
+
+    public function getTotalAmount(){
+      $sql = "SELECT SUM(total_price) as total
+        FROM client_game";
+      if(connectionDB::getDbType() == 0){
+        $result = pg_query(connectionDB::getDBConnection(), $sql);
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return pg_fetch_object($result);
+      } else {
+        $result = mysqli_query(connectionDB::getDBConnection(), $sql);
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return mysqli_fetch_object($result);
+      }
+    }
+
+    public function getPopularCompany(){
+      // $sql = "CREATE OR REPLACE VIEW vw_bestCompany AS
+      //   SELECT company.name, COUNT(company.name) as quantidade, SUM(client_game.total_price) as valor
+      //   FROM client_game
+      //   INNER JOIN game ON game.id = client_game.game_id
+      //   INNER JOIN company ON company.id = game.company_id
+      //   GROUP BY company.name
+      //   ORDER BY valor DESC
+      //   LIMIT 1";
+      $sql = "SELECT * FROM vw_bestCompany";
+      if(connectionDB::getDbType() == 0){
+        $result = pg_query(connectionDB::getDBConnection(), $sql);
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return pg_fetch_object($result);
+      } else {
+        $result = mysqli_query(connectionDB::getDBConnection(), $sql);
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return mysqli_fetch_object($result);
+      }
     }
   }
 ?>

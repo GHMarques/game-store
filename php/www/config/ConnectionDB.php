@@ -3,7 +3,7 @@ class ConnectionDB {
   private static $dbconn = '';
   private static $dblink = '';
   //0 = postgresql; 1 = mysql
-  private static $dbType = 1;
+  private static $dbType = 0;
   private function __construct() {}
   private function __clone() {}
   /**

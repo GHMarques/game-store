@@ -158,5 +158,30 @@
       }
       
     }
+
+    public function getPopularClient(){
+      $sql = "SELECT client.name, COUNT(client_id) as quantidade, SUM(total_price) as valor
+        FROM client_game
+        INNER JOIN client ON client.id = client_game.client_id
+        GROUP BY client.name
+        ORDER BY quantidade DESC
+        LIMIT 1";
+      if(connectionDB::getDbType() == 0){
+        $result = pg_query(connectionDB::getDBConnection(), $sql);
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return pg_fetch_object($result);
+      } else {
+        $result = mysqli_query(connectionDB::getDBConnection(), $sql);
+        if (!$result) {
+            echo "An error occurred.\n";
+            exit;
+        }
+        return mysqli_fetch_object($result);
+      }
+      
+    }
   }
 ?>

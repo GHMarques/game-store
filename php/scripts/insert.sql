@@ -18,3 +18,10 @@ INSERT INTO public.game(
 	name, release_date, recommended_age, price, description, company_id)
 	VALUES ('Counter Strike', '2000-11-08', 18, '10.50', 'Melhor jogo.', 1),
 	('PUBG', '2017-12-20', 18, '50.00', 'Segundo melhor jogo.', 2);
+
+INSERT INTO public.client_game (client_id, game_id, date, total_price, payment_type) VALUES
+(1, 1, '2013-07-24', 10.5, 0),
+(1, 1, '2013-07-24', 15, 0),
+(1, 2, '2013-07-24', 50, 0),
+(2, 1, '2013-07-24', 10, 0),
+(3, 2, '2013-07-24', 50, 0);
